@@ -6,6 +6,7 @@ const {isAdmin} = require('../middleware/isAdmin')
 const nodemailer= require("nodemailer")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const baseUrl = "https://node-easy-book.onrender.com/";
 
 function generateToken(userId) {
   const token = jwt.sign({ userId },process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -26,7 +27,7 @@ function generateOTP() {
 }
 
 
-router.post('/register', (req, res) => {
+router.post(`${baseUrl}/register`, (req, res) => {
   const { name, email, password } = req.body;
   
   User.findOne({ email })
@@ -85,7 +86,7 @@ router.post('/register', (req, res) => {
 
 
 
-router.post('/verify-otp', (req, res) => {
+router.post(`${baseUrl}/verify-otp`, (req, res) => {
   const { email, otp } = req.body;
 
   User.findOne({ email, otp, isVerified: false })
@@ -110,7 +111,7 @@ router.post('/verify-otp', (req, res) => {
 
 
 
-router.post('/login', (req, res) => {
+router.post(`${baseUrl}/login`, (req, res) => {
   const { email, password } = req.body;
 
   User.findOne({ email })
@@ -140,7 +141,7 @@ router.post('/login', (req, res) => {
 });
 
 
-router.post('/add-time-slot', isAdmin,(req, res) => {
+router.post(`${baseUrl}/add-time-slot`, isAdmin,(req, res) => {
   const { year, month, day, startTime, endTime } = req.body;
 
   const newTimeSlot = new TimeSlot({
@@ -162,7 +163,7 @@ router.post('/add-time-slot', isAdmin,(req, res) => {
     });
 });
 
-router.get('/available-time-slots/:year/:month/:day', isAuthenticated, (req, res) => {
+router.get(`${baseUrl}/available-time-slots/:year/:month/:day`, isAuthenticated, (req, res) => {
   const { year, month, day } = req.params;
 
   TimeSlot.find({ year, month, day, isBooked: false })
@@ -175,7 +176,7 @@ router.get('/available-time-slots/:year/:month/:day', isAuthenticated, (req, res
     });
 });
 
-router.post('/book-time-slot/:id', isAuthenticated, (req, res) => {
+router.post(`${baseUrl}/book-time-slot/:id`, isAuthenticated, (req, res) => {
   const timeSlotId = req.params.id;
   const userId = req.user._id;
 
@@ -209,7 +210,7 @@ router.post('/book-time-slot/:id', isAuthenticated, (req, res) => {
 });
 
 
-router.post('/cancel-booking/:id', isAuthenticated, (req, res) => {
+router.post(`${baseUrl}/cancel-booking/:id`, isAuthenticated, (req, res) => {
   const timeSlotId = req.params.id;
 
   TimeSlot.findById(timeSlotId)
@@ -242,7 +243,7 @@ router.post('/cancel-booking/:id', isAuthenticated, (req, res) => {
 });
 
 
-router.get('/my-booked-time-slots', isAuthenticated, (req, res) => {
+router.get(`${baseUrl}/my-booked-time-slots`, isAuthenticated, (req, res) => {
   const userId = req.user._id; 
 
   TimeSlot.find({ userId, isBooked: true })
