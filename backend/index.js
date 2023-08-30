@@ -5,6 +5,7 @@ const userRoute = require("./routes/user");
 const cookieParser = require("cookie-parser")
 const path = require("path")
 const cors = require("cors")
+const baseUrl = "https://node-easy-book.onrender.com/";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.static(path.join(__dirname,'uploads')));
 
-app.use("/",userRoute);
+app.use(baseUrl,userRoute);
 
 app.use(cors());
 
