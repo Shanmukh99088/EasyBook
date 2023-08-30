@@ -1,0 +1,24 @@
+/* Add custom styling for date cells */
+/* .calendar-date-cell {
+    cursor: pointer;
+    background-color: white !important; 
+    border: none !important; 
+  } */
+  
+  /* Override FullCalendar's default link styles */
+  .fc-daygrid-day-top a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  #calendar {
+    background-color: white !important; /* Change the background color to white */
+  }
+  
+  /* Apply cursor pointer on hover for date cells */
+  .fc-day:hover {
+    cursor: pointer;
+  }
+  .my-custom-margin {
+    margin-top: 40px; /* Adjust the value as needed */
+  }
+  
