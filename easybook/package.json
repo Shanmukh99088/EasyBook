@@ -20,7 +20,7 @@
     "sweetalert2": "^11.7.27",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://easy-booking-node.onrender.com/",
+  "proxy": "https://easy-booking-node.onrender.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "npm i",
