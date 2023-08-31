@@ -3,7 +3,6 @@ import Calendar from 'react-calendar'; // Import the Calendar component
 import 'react-calendar/dist/Calendar.css';
 import './home.component.css'; // Import your custom CSS file for styling
 import MyAppointments from './MyAppointment.component';
-import { BASE_API_URL } from 'config';
 
 interface Appointment {
   date: string;
@@ -41,7 +40,7 @@ const Home: React.FC<HomeProps> = ({ bookedAppointments = [], setBookedAppointme
 
     // Fetch available time slots from the backend
     try {
-      const response = await fetch(`${BASE_API_URL}/available-time-slots/${year}/${month}/${day}`);
+      const response = await fetch(`/available-time-slots/${year}/${month}/${day}`);
       const data = await response.json();
       if (response.ok) {
         const timeSlots = data.timeSlots;
@@ -76,7 +75,7 @@ const Home: React.FC<HomeProps> = ({ bookedAppointments = [], setBookedAppointme
       const timeSlotId = selectedTimeSlotObj._id;
   
       try {
-        const response = await fetch(`${BASE_API_URL}/book-time-slot/${timeSlotId}`, {
+        const response = await fetch(`/book-time-slot/${timeSlotId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

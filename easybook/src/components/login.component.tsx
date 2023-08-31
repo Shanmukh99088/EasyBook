@@ -1,6 +1,5 @@
 import React, { Component, FormEvent } from 'react';
 import { Navigate } from 'react-router-dom';
-import { BASE_API_URL } from 'config';
 
 interface LoginState {
   email: string;
@@ -33,7 +32,7 @@ export default class Login extends Component<{}, LoginState> {
     const { email, password } = this.state;
 
     // Send login data to the backend
-    fetch(`${BASE_API_URL}/login`, {
+    fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BASE_API_URL } from 'config';
 
 interface BookedTimeSlot {
   _id: string;
@@ -24,7 +23,7 @@ const MyAppointments: React.FC<MyAppointmentsProps> = ({ bookedAppointments, set
 
   const fetchMyBookedTimeSlots = async () => {
     try {
-      const response = await fetch(`${BASE_API_URL}/my-booked-time-slots`, {
+      const response = await fetch('/my-booked-time-slots', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -46,7 +45,7 @@ const MyAppointments: React.FC<MyAppointmentsProps> = ({ bookedAppointments, set
 
   const handleCancelBooking = async (bookingId: string) => {
     try {
-      const response = await fetch(`${BASE_API_URL}/cancel-booking/${bookingId}`, {
+      const response = await fetch(`/cancel-booking/${bookingId}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

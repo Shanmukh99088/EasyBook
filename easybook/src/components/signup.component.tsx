@@ -1,6 +1,5 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 import { Navigate } from 'react-router-dom';
-import { BASE_API_URL } from 'config';
 
 interface SignUpState {
   name: string;
@@ -47,7 +46,7 @@ export default class SignUp extends Component<{}, SignUpState> {
     const { name, email, password } = this.state;
 
     // Send registration data to the backend
-    fetch(`${BASE_API_URL}/register`, {
+    fetch('/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +68,7 @@ export default class SignUp extends Component<{}, SignUpState> {
     const { email,otp } = this.state;
 
     // Send OTP verification request
-    fetch(`${BASE_API_URL}/verify-otp`, {
+    fetch('/verify-otp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
