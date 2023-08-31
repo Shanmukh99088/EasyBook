@@ -18,6 +18,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://main.d1d0bnvalj6fok.amplifyapp.com');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Specify allowed HTTP methods
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // Specify allowed headers
+  res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
