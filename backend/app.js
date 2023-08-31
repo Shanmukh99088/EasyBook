@@ -24,7 +24,11 @@ app.use(express.static(path.join(__dirname,'uploads')));
 
 app.use("/",userRoute);
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://main.d1d0bnvalj6fok.amplifyapp.com',
+  optionsSuccessStatus: 200, 
+};
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("db connected...")
