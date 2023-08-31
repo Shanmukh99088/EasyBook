@@ -24,6 +24,15 @@ app.use(express.static(path.join(__dirname,'uploads')));
 
 app.use("/",userRoute);
 
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://main.d1d0bnvalj6fok.amplifyapp.com');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Specify allowed HTTP methods
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // Specify allowed headers
+  next();
+});
+
+
 const corsOptions = {
   origin: 'https://main.d1d0bnvalj6fok.amplifyapp.com',
   optionsSuccessStatus: 200, 
