@@ -4,7 +4,7 @@ const TimeSlot = require("../models/TimeSlot")
 const {isAuthenticated} = require('../middleware/check-auth')
 const {isAdmin} = require('../middleware/isAdmin')
 const nodemailer= require("nodemailer")
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
